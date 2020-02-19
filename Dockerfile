@@ -6,7 +6,7 @@ RUN sed -i 's/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/source
 	&& apt-get -y update \
 	&& apt-get install -qy apt-utils \
 	&& apt-get -qy install locales \
-	&& locale-gen --no-purge en_US.UTF-8
+	&& locale-gen --no-purge en_US.UTF-8 \
 	&& apt-get install -qy --no-install-recommends wget curl vim htop git screen sudo nano ca-certificates rsync zsh build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler \
 	&& apt-get clean \
 	&& rm -rf /var/lib/apt/lists/* \
