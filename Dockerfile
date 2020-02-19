@@ -25,8 +25,7 @@ RUN sed -i 's/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/source
 	&& cp -R ./.oh-my-zsh/ /root/ \
 	&& cp ./.zshrc /root \
 	&& sed -i 's/\/home\/admin:/\/home\/admin:\/bin\/zsh/g' /etc/passwd \
-	&& echo "Asia/Shanghai" > /etc/timezone \
-	&& dpkg-reconfigure -f noninteractive tzdata
+	&& echo "Asia/Shanghai" > /etc/timezone
 
 ENV LC_ALL en_US.UTF-8
 
