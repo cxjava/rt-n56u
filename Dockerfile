@@ -12,6 +12,8 @@ RUN sed -i 's/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/source
 	&& rm -rf /var/lib/apt/lists/* \
 	&& useradd -m admin \
 	&& echo admin:admin | chpasswd \
+	&& adduser docker sudo \
+	&& echo 'admin ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers \
 	&& echo 'admin ALL=NOPASSWD: ALL' > /etc/sudoers.d/admin \
 	&& cd /home/admin \
 	&& git clone git://github.com/robbyrussell/oh-my-zsh ./.oh-my-zsh \
