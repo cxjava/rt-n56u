@@ -1,0 +1,24 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/golang:1.13
+        environment:
+          - targets="DIR-878-5.0 MI-R3G"
+          - toolchain_url="https://github.com/hanwckf/padavan-toolchain/releases/download/v1.1/mipsel-linux-uclibc.tar.xz"
+    parallelism: 1
+    steps:
+      - cd /opt && git clone --depth=1 https://github.com/hanwckf/rt-n56u.git
+      - rm -rf ./rt-n56u/toolchain-mipsel/ && mkdir -p ./rt-n56u/toolchain-mipsel/toolchain-3.4.x && mkdir -p ./images
+      - wget $toolchain_url && tar -xf mipsel-linux-uclibc.tar.xz -C ./rt-n56u/toolchain-mipsel/toolchain-3.4.x
+      - ls -Alh /opt/rt-n56u && cd /opt/rt-n56u/trunk/
+      - for m in $targets; do fakeroot ./build_firmware_nohup $m && cp -f images/*.trx /opt/images/$m.trx; ./clear_tree_simple >/dev/null 2>&1; done
+      - GIT_VERSION=`git rev-parse --short=7 HEAD 2>/dev/null` && [ -n "$GIT_VERSION" ] && image_name=images_mt7621_$GIT_VERSION || image_name=images_mt7621
+      - cd /opt/images; du -k *; md5sum *.trx |tee md5sum.txt ; 7z a -mx=9 ${image_name}.7z ./*
+      - "curl -m 180 -H 'Max-Days: 3' --upload-file ./${image_name}.7z https://transfer.sh/${image_name}.7z ; echo"
+
+workflows:
+  version: 2
+  build-workflow:
+    jobs:
+      - build
