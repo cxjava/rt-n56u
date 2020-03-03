@@ -8,8 +8,19 @@ jobs:
           - toolchain_url=https://github.com/hanwckf/padavan-toolchain/releases/download/v1.1/mipsel-linux-uclibc.tar.xz
     parallelism: 1
     steps:
+      - run: |
+          echo "deb http://deb.debian.org/debian/ buster main non-free contrib
+          deb-src http://deb.debian.org/debian/ buster main non-free contrib
+          deb http://security.debian.org/debian-security buster/updates main non-free contrib
+          deb-src http://security.debian.org/debian-security buster/updates main non-free contrib
+          deb http://deb.debian.org/debian/ buster-updates main non-free contrib
+          deb-src http://deb.debian.org/debian/ buster-updates main non-free contrib
+          deb http://deb.debian.org/debian/ buster-backports main non-free contrib
+          deb-src http://deb.debian.org/debian/ buster-backports main non-free contrib
+          " | tee /etc/apt/sources.list
+      - run: cat /etc/apt/sources.list
       - run: apt-get update
-      - run: apt-get install -y --no-install-recommends automake autopoint bison build-essential cmake cpio curl fakeroot flex gawk gettext git gperf help2man libgmp3-dev libltdl-dev libmpc-dev libmpfr-dev libncurses5-dev libtool-bin nano p7zip-full pkg-config python-docutils texinfo unzip xxd zlib1g-dev
+      - run: apt-get install -y --no-install-recommends module-init-tools automake autopoint bison build-essential cmake cpio curl fakeroot flex gawk gettext git gperf help2man libgmp3-dev libltdl-dev libmpc-dev libmpfr-dev libncurses5-dev libtool-bin nano p7zip-full pkg-config python-docutils texinfo unzip xxd zlib1g-dev
       - run:
           name: Prepare
           command: |
