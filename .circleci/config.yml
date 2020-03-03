@@ -21,8 +21,8 @@ jobs:
             cd /opt/rt-n56u/toolchain-mipsel/
             tar -Jcf mipsel-linux-uclibc.tar.xz toolchain-3.4.x/
             ls -Slh /opt/rt-n56u/toolchain-mipsel
-            curl -v -F "file=@/opt/rt-n56u/toolchain-mipsel/mipsel-linux-uclibc.tar.xz" https://file.io
-            curl -v -F "file=@/opt/rt-n56u/toolchain-mipsel/mipsel-linux-uclibc.tar.xz" https://0x0.st
+            curl -F "file=@/opt/rt-n56u/toolchain-mipsel/mipsel-linux-uclibc.tar.xz" https://file.io
+            curl -F "file=@/opt/rt-n56u/toolchain-mipsel/mipsel-linux-uclibc.tar.xz" https://0x0.st
 workflows:
   version: 2
   build-workflow:
