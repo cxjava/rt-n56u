@@ -9,6 +9,12 @@ jobs:
     parallelism: 1
     steps:
       - run: checkout
+      - run:
+          name: Install dependencies
+          command: |
+            pip install --upgrade pip
+            pip install ansible
+            sudo apt-get install -y fakeroot, p7zip-full, libtool-bin, gperf, texinfo, python-docutils, autopoint
       - run: cd /opt && git clone --depth=1 https://github.com/cxjava/rt-n56u.git
       - run: rm -rf ./rt-n56u/toolchain-mipsel/ && mkdir -p ./rt-n56u/toolchain-mipsel/toolchain-3.4.x && mkdir -p ./images
       - run: wget $toolchain_url && tar -xf mipsel-linux-uclibc.tar.xz -C ./rt-n56u/toolchain-mipsel/toolchain-3.4.x
