@@ -9,7 +9,7 @@ jobs:
     parallelism: 1
     steps:
       - run: apt-get update
-      - run: apt-get install -y --no-install-recommends module-init-tools ca-certificates git git-core libssl-dev automake autopoint bison build-essential cmake cpio curl fakeroot flex gawk gettext git gperf help2man libgmp3-dev libltdl-dev libmpc-dev libmpfr-dev libncurses5-dev libtool-bin nano p7zip-full pkg-config python-docutils texinfo unzip xxd zlib1g-dev
+      - run: apt-get install -y --no-install-recommends module-init-tools wget ca-certificates git git-core libssl-dev automake autopoint bison build-essential cmake cpio curl fakeroot flex gawk gettext git gperf help2man libgmp3-dev libltdl-dev libmpc-dev libmpfr-dev libncurses5-dev libtool-bin nano p7zip-full pkg-config python-docutils texinfo unzip xxd zlib1g-dev
       - run:
           name: Prepare
           command: |
