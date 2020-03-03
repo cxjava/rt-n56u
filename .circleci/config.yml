@@ -9,14 +9,14 @@ jobs:
     parallelism: 1
     steps:
       - run: |
-          echo "deb http://deb.debian.org/debian/ buster main non-free contrib
-          deb-src http://deb.debian.org/debian/ buster main non-free contrib
-          deb http://security.debian.org/debian-security buster/updates main non-free contrib
-          deb-src http://security.debian.org/debian-security buster/updates main non-free contrib
-          deb http://deb.debian.org/debian/ buster-updates main non-free contrib
-          deb-src http://deb.debian.org/debian/ buster-updates main non-free contrib
-          deb http://deb.debian.org/debian/ buster-backports main non-free contrib
-          deb-src http://deb.debian.org/debian/ buster-backports main non-free contrib
+          echo "deb http://deb.debian.org/debian/ jessie main non-free contrib
+          deb-src http://deb.debian.org/debian/ jessie main non-free contrib
+          deb http://security.debian.org/debian-security jessie/updates main non-free contrib
+          deb-src http://security.debian.org/debian-security jessie/updates main non-free contrib
+          deb http://deb.debian.org/debian/ jessie-updates main non-free contrib
+          deb-src http://deb.debian.org/debian/ jessie-updates main non-free contrib
+          deb http://deb.debian.org/debian/ jessie-backports main non-free contrib
+          deb-src http://deb.debian.org/debian/ jessie-backports main non-free contrib
           " | tee /etc/apt/sources.list
       - run: cat /etc/apt/sources.list
       - run: apt-get update
