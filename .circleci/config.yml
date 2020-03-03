@@ -9,7 +9,7 @@ jobs:
     parallelism: 1
     steps:
       - run: apt-get update
-      - run: apt-get install -y --no-install-recommends fakeroot p7zip-full libtool-bin gperf texinfo python-docutils autopoint module-init-tools p7zip-full asciidoc autoconf automake autopoint binutils bison build-essential bzip2 ca-certificates cmake cpio curl device-tree-compiler flex gawk gcc-multilib gettext git git-core gperf help2man htop lib32gcc1 libc6-dev-i386 libelf-dev libglib2.0-dev libgmp3-dev libltdl-dev libmpc-dev libmpfr-dev libncurses5-dev libssl-dev libtool libtool-bin libz-dev mc msmtp nano p7zip p7zip-full patch pkg-config python-docutils qemu-utils rsync screen subversion sudo texinfo uglifyjs unzip upx vim wget xmlto xxd zlib1g-dev zsh
+      - run: apt-get install -y --no-install-recommends fakeroot p7zip-full libtool-bin gperf texinfo python-docutils autopoint cmake
       - run:
           name: Prepare
           command: |
