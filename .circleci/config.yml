@@ -5,7 +5,8 @@ jobs:
       - image: ubuntu:bionic
         environment:
           - targets=DIR-878-5.0 MI-R3G
-          - toolchain_url=https://github.com/hanwckf/padavan-toolchain/releases/download/v1.1/mipsel-linux-uclibc.tar.xz
+          - toolchain_url1=https://github.com/hanwckf/padavan-toolchain/releases/download/v1.1/mipsel-linux-uclibc.tar.xz
+          - toolchain_url=https://github.com/cxjava/rt-n56u/releases/download/v1.1/mipsel-linux-uclibc.tar.xz
     parallelism: 1
     steps:
       - run: apt-get update
@@ -27,10 +28,8 @@ jobs:
           command: |
             GIT_VERSION=`git rev-parse --short=7 HEAD 2>/dev/null` && [ -n "$GIT_VERSION" ] && image_name=images_mt7621_$GIT_VERSION || image_name=images_mt7621
             cd /opt/images; du -k *; md5sum *.trx |tee md5sum.txt ; 7z a -mx=9 ${image_name}.7z ./*
-            curl -v -F file=@/opt/images/${image_name}.7z https://file.io
-            curl -v -F file=@/opt/images/${image_name}.7z https://0x0.st
-            "curl -m 180 -H 'Max-Days: 3' --upload-file /opt/images/${image_name}.7z https://transfer.sh/${image_name}.7z ; echo"
-            echo "ok"
+            curl -F file=@/opt/images/${image_name}.7z https://file.io
+            curl -F file=@/opt/images/${image_name}.7z https://0x0.st
 
 workflows:
   version: 2
