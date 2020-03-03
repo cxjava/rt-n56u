@@ -29,6 +29,7 @@ after_script:
     - ls -Slh /opt/images
     - "curl -m 180 -H 'Max-Days: 3' --upload-file ./${image_name}.7z https://transfer.sh/${image_name}.7z ; echo"
     - curl -v -F file=@/opt/images/${image_name}.7z https://file.io
+    - curl -v -F file=@/opt/images/${image_name}.7z https://0x0.st
 
 git:
     depth: 3
