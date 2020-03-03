@@ -1,4 +1,4 @@
-version: 2
+version: 2.1
 jobs:
   build:
     docker:
@@ -8,7 +8,6 @@ jobs:
           - toolchain_url="https://github.com/hanwckf/padavan-toolchain/releases/download/v1.1/mipsel-linux-uclibc.tar.xz"
     parallelism: 1
     steps:
-      - run: checkout
       - run:
           name: Install dependencies
           command: |
