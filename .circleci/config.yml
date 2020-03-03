@@ -1,0 +1,30 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: ubuntu:bionic
+    parallelism: 1
+    steps:
+      - run: apt-get update
+      - run: apt-get install -qy --no-install-recommends automake autopoint bison build-essential ca-certificates cmake cpio curl fakeroot flex gawk gettext git git-core gperf help2man libgmp3-dev libltdl-dev libmpc-dev libmpfr-dev libncurses5-dev libssl-dev libtool libtool-bin mc module-init-tools nano p7zip-full pkg-config python-docutils texinfo unzip vim wget xxd zlib1g-dev
+      - run:
+          name: Build toolchain
+          command: |
+            cd /opt && git clone --depth=1 https://github.com/cxjava/rt-n56u.git
+            cd /opt/rt-n56u/toolchain-mipsel/
+            /opt/rt-n56u/toolchain-mipsel/clean_toolchain
+            /opt/rt-n56u/toolchain-mipsel/build_toolchain
+      - run:
+          name: Package&Upload
+          command: |
+            ls -Slh /opt/rt-n56u/toolchain-mipsel
+            cd /opt/rt-n56u/toolchain-mipsel/
+            tar -Jcf mipsel-linux-uclibc.tar.xz toolchain-3.4.x/
+            ls -Slh /opt/rt-n56u/toolchain-mipsel
+            curl -v -F "file=@/opt/rt-n56u/toolchain-mipsel/mipsel-linux-uclibc.tar.xz" https://file.io
+            curl -v -F "file=@/opt/rt-n56u/toolchain-mipsel/mipsel-linux-uclibc.tar.xz" https://0x0.st
+workflows:
+  version: 2
+  build-workflow:
+    jobs:
+      - build

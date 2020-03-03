@@ -10,5 +10,3 @@ RUN apt-get -y update \
 ENV LC_ALL en_US.UTF-8
 
 WORKDIR /opt
-
-CMD ["/build.sh"]
