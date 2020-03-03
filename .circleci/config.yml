@@ -18,7 +18,7 @@ jobs:
           " | tee /etc/apt/sources.list
       - run: cat /etc/apt/sources.list
       - run: apt-get update
-      - run: apt-get install -y --no-install-recommends module-init-tools automake autopoint bison build-essential cmake cpio curl fakeroot flex gawk gettext git gperf help2man libgmp3-dev libltdl-dev libmpc-dev libmpfr-dev libncurses5-dev libtool-bin nano p7zip-full pkg-config python-docutils texinfo unzip xxd zlib1g-dev
+      - run: apt-get install -y --no-install-recommends module-init-tools automake autopoint bison build-essential cmake cpio curl fakeroot flex gawk gettext git gperf help2man libgmp3-dev libltdl-dev libmpc-dev libmpfr-dev libncurses5-dev libtool-bin nano p7zip-full pkg-config python-docutils texinfo unzip zlib1g-dev
       - run:
           name: Prepare
           command: |
