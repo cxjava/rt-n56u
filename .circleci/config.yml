@@ -24,10 +24,10 @@ jobs:
           name: 下载编译好的toolchain
           working_directory: /opt/rt-n56u
           command: |
-            tree . -h -L 3
+            tree ./toolchain-mipsel/ -h -L 2
             rm -rf ./toolchain-mipsel/ && mkdir -p ./toolchain-mipsel
             wget $toolchain_url && tar -xf mipsel-linux-uclibc.tar.xz -C ./toolchain-mipsel
-            tree . -h -L 4
+            tree ./toolchain-mipsel/ -h -L 2
       - run:
           name: 编译
           working_directory: /opt/rt-n56u/trunk
