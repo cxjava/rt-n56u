@@ -48,12 +48,6 @@ jobs:
             curl -F file=@/opt/images/${image_name}.7z https://0x0.st
       - store_artifacts:
           path: /opt/images
-          destination: MI-R3G.trx
-      - store_artifacts:
-          path: /opt/images
-          destination: DIR-878-5.0.trx
-      - store_artifacts:
-          path: /opt/images
 workflows:
   version: 2.1
   build-workflow:
